@@ -4,16 +4,16 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.Text
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxHeight
-import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.VectorAsset
 import androidx.compose.ui.platform.setContent
 import androidx.compose.ui.res.vectorResource
+import androidx.compose.ui.unit.dp
 import androidx.ui.tooling.preview.Preview
 import dog.shebang.tweetpreview.ui.TweetPreviewTheme
 
@@ -34,7 +34,11 @@ class MainActivity : AppCompatActivity() {
 
 @Composable
 fun MyApp() {
-    val fillModifier = Modifier.fillMaxHeight().fillMaxWidth()
+    val fillModifier = Modifier
+        .padding(all = 16.dp)
+        .fillMaxHeight()
+        .fillMaxWidth()
+
     val icon = vectorResource(id = R.drawable.ic_android_black_24dp)
 
     Column(modifier = fillModifier) {
@@ -48,17 +52,32 @@ fun MyApp() {
 
 @Composable
 fun Thumbnail(vectorIcon: VectorAsset) {
-    Image(asset = vectorIcon)
+    Image(
+        asset = vectorIcon,
+        modifier = Modifier
+            .fillMaxWidth()
+            .wrapContentWidth(align = Alignment.CenterHorizontally)
+    )
 }
 
 @Composable
 fun Title(title: String) {
-    Text(text = title)
+    Text(
+        text = title,
+        modifier = Modifier
+            .fillMaxWidth()
+            .wrapContentWidth(align = Alignment.CenterHorizontally)
+    )
 }
 
 @Composable
 fun Content(content: String) {
-    Text(text = content)
+    Text(
+        text = content,
+        modifier = Modifier
+            .fillMaxWidth()
+            .wrapContentWidth(Alignment.CenterHorizontally)
+    )
 }
 
 @Preview(showBackground = true)
