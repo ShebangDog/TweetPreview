@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.Text
 import androidx.compose.foundation.layout.*
+import androidx.compose.material.Divider
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
@@ -37,10 +38,23 @@ fun MyApp() {
     val icon = vectorResource(id = R.drawable.ic_android_black_24dp)
 
     Column(modifier = Modifier.fillMaxHeight().fillMaxWidth().padding(8.dp)) {
+        TopAppBar()
+
         Profile(vectorIcon = icon, name = "しばDog", id = "ShebangDog")
 
+        Content("Multiple Line Content\n End")
 
+        Date()
+        Divider()
+        Reaction()
+        Divider()
+        Action()
     }
+}
+
+@Composable
+fun TopAppBar() {
+
 }
 
 @Composable
@@ -74,6 +88,44 @@ fun Profile(vectorIcon: VectorAsset, name: String, id: String) {
     }
 }
 
+@Composable
+fun Content(content: String) {
+    Text(
+        text = content,
+        modifier = Modifier.fillMaxWidth().wrapContentHeight().padding(vertical = 8.dp)
+    )
+}
+
+@Composable
+fun Date() {
+    Text(text = "2020/09/29 13:45 Twitter Web App", modifier = Modifier.padding(vertical = 8.dp))
+}
+
+@Composable
+fun Reaction() {
+    Text(text = "1 いいね", modifier = Modifier.padding(vertical = 8.dp))
+}
+
+@Composable
+fun Action() {
+    val iconSize = Modifier.size(24.dp)
+
+    val vectorImageAssets = listOf(
+        R.drawable.ic_baseline_chat_bubble_outline,
+        R.drawable.ic_outline_repeat,
+        R.drawable.ic_baseline_favorite,
+        R.drawable.ic_baseline_share
+    ).map { vectorResource(id = it) }
+
+    Row(modifier = Modifier.fillMaxWidth().padding(vertical = 8.dp)) {
+        vectorImageAssets.forEach {
+            Image(
+                asset = it,
+                modifier = iconSize.weight(1F)
+            )
+        }
+    }
+}
 
 @Preview(showBackground = true)
 @Composable
