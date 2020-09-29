@@ -4,9 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.Text
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
@@ -38,11 +36,30 @@ class MainActivity : AppCompatActivity() {
 fun MyApp() {
     val icon = vectorResource(id = R.drawable.ic_android_black_24dp)
 
-    Profile(vectorIcon = icon, name = "しばDog", id = "ShebangDog")
+    Column(modifier = Modifier.fillMaxHeight().fillMaxWidth().padding(8.dp)) {
+        Profile(vectorIcon = icon, name = "しばDog", id = "ShebangDog")
+
+
+    }
 }
 
 @Composable
 fun Profile(vectorIcon: VectorAsset, name: String, id: String) {
+    @Composable
+    fun Icon(vectorIcon: VectorAsset) {
+        Image(asset = vectorIcon)
+    }
+
+    @Composable
+    fun Name(name: String) {
+        Text(text = name)
+    }
+
+    @Composable
+    fun Id(id: String) {
+        Text(text = id)
+    }
+
     Row(
         verticalAlignment = Alignment.CenterVertically,
         modifier = Modifier.padding(8.dp)
@@ -57,20 +74,6 @@ fun Profile(vectorIcon: VectorAsset, name: String, id: String) {
     }
 }
 
-@Composable
-fun Icon(vectorIcon: VectorAsset) {
-    Image(asset = vectorIcon)
-}
-
-@Composable
-fun Name(name: String) {
-    Text(text = name)
-}
-
-@Composable
-fun Id(id: String) {
-    Text(text = id)
-}
 
 @Preview(showBackground = true)
 @Composable
