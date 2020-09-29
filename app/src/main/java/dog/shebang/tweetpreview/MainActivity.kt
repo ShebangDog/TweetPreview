@@ -4,7 +4,9 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.Text
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
@@ -34,54 +36,48 @@ class MainActivity : AppCompatActivity() {
 
 @Composable
 fun MyApp() {
-    val fillModifier = Modifier
-        .padding(all = 16.dp)
-        .fillMaxHeight()
-        .fillMaxWidth()
-
     val icon = vectorResource(id = R.drawable.ic_android_black_24dp)
 
-    Column(modifier = fillModifier) {
-        Title(title = "Title")
+    Profile(vectorIcon = icon, name = "しばDog", id = "ShebangDog")
+}
 
-        Thumbnail(vectorIcon = icon)
+@Composable
+fun Profile(vectorIcon: VectorAsset, name: String, id: String) {
+    Row(
+        verticalAlignment = Alignment.CenterVertically,
+        modifier = Modifier.padding(8.dp)
+    ) {
 
-        Content(content = "Contents\nMultiline")
+        Icon(vectorIcon = vectorIcon)
+
+        Column(modifier = Modifier.padding(start = 8.dp)) {
+            Name(name = name)
+            Id(id = id)
+        }
     }
 }
 
 @Composable
-fun Thumbnail(vectorIcon: VectorAsset) {
-    Image(
-        asset = vectorIcon,
-        modifier = Modifier
-            .fillMaxWidth()
-            .wrapContentWidth(align = Alignment.CenterHorizontally)
-    )
+fun Icon(vectorIcon: VectorAsset) {
+    Image(asset = vectorIcon)
 }
 
 @Composable
-fun Title(title: String) {
-    Text(
-        text = title,
-        modifier = Modifier
-            .fillMaxWidth()
-            .wrapContentWidth(align = Alignment.CenterHorizontally)
-    )
+fun Name(name: String) {
+    Text(text = name)
 }
 
 @Composable
-fun Content(content: String) {
-    Text(
-        text = content,
-        modifier = Modifier
-            .fillMaxWidth()
-            .wrapContentWidth(Alignment.CenterHorizontally)
-    )
+fun Id(id: String) {
+    Text(text = id)
 }
 
 @Preview(showBackground = true)
 @Composable
 fun DefaultPreview() {
-    TweetPreviewTheme { MyApp() }
+    TweetPreviewTheme {
+        Surface(color = MaterialTheme.colors.background) {
+            MyApp()
+        }
+    }
 }
