@@ -89,25 +89,25 @@ fun Profile(vectorIcon: VectorAsset, name: String, id: String) {
 }
 
 @Composable
-fun Content(content: String) {
+fun Content(content: String, modifier: Modifier = Modifier) {
     Text(
         text = content,
-        modifier = Modifier.fillMaxWidth().wrapContentHeight().padding(vertical = 8.dp)
+        modifier = modifier.fillMaxWidth().wrapContentHeight().padding(vertical = 8.dp)
     )
 }
 
 @Composable
-fun Date() {
-    Text(text = "2020/09/29 13:45 Twitter Web App", modifier = Modifier.padding(vertical = 8.dp))
+fun Date(modifier: Modifier = Modifier) {
+    Text(text = "2020/09/29 13:45 Twitter Web App", modifier = modifier.padding(vertical = 8.dp))
 }
 
 @Composable
-fun Reaction() {
-    Text(text = "1 いいね", modifier = Modifier.padding(vertical = 8.dp))
+fun Reaction(modifier: Modifier = Modifier) {
+    Text(text = "1 いいね", modifier = modifier.padding(vertical = 8.dp))
 }
 
 @Composable
-fun Action() {
+fun Action(modifier: Modifier = Modifier) {
     val iconSize = Modifier.size(24.dp)
 
     val vectorImageAssets = listOf(
@@ -117,7 +117,7 @@ fun Action() {
         R.drawable.ic_baseline_share
     ).map { vectorResource(id = it) }
 
-    Row(modifier = Modifier.fillMaxWidth().padding(vertical = 8.dp)) {
+    Row(modifier = modifier.fillMaxWidth().padding(vertical = 8.dp)) {
         vectorImageAssets.forEach {
             Image(
                 asset = it,
