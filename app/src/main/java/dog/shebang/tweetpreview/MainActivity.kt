@@ -7,12 +7,13 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.Text
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.VectorAsset
 import androidx.compose.ui.platform.setContent
-import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.unit.dp
 import androidx.ui.tooling.preview.Preview
 import dog.shebang.tweetpreview.ui.TweetPreviewTheme
@@ -34,14 +35,12 @@ class MainActivity : AppCompatActivity() {
 
 @Composable
 fun MyApp() {
-    val icon = vectorResource(id = R.drawable.ic_baseline_arrow_back_24)
-
     Scaffold(topBar = {
         TopAppBar(
             title = { Text(text = "Tweet Preview") },
             navigationIcon = {
                 IconButton(onClick = {}) {
-                    Icon(asset = icon)
+                    Icon(asset = Icons.Default.ArrowBack)
                 }
             }
         )
@@ -53,10 +52,8 @@ fun MyApp() {
 
 @Composable
 fun BodyContents(modifier: Modifier = Modifier) {
-    val icon = vectorResource(id = R.drawable.ic_android_black_24dp)
-
     Column(modifier = modifier.fillMaxHeight().fillMaxWidth().padding(8.dp)) {
-        Profile(vectorIcon = icon, name = "しばDog", id = "ShebangDog")
+        Profile(vectorIcon = Icons.Default.Person, name = "しばDog", id = "ShebangDog")
 
         Content("Multiple Line Content\n End")
 
@@ -121,15 +118,15 @@ fun Reaction(modifier: Modifier = Modifier) {
 fun Action(modifier: Modifier = Modifier) {
     val iconSize = Modifier.size(24.dp)
 
-    val vectorImageAssets = listOf(
-        R.drawable.ic_baseline_chat_bubble_outline,
-        R.drawable.ic_outline_repeat,
-        R.drawable.ic_baseline_favorite,
-        R.drawable.ic_baseline_share
-    ).map { vectorResource(id = it) }
+    val icons = listOf(
+        Icons.Default.ChatBubbleOutline,
+        Icons.Default.Repeat,
+        Icons.Default.FavoriteBorder,
+        Icons.Default.Share
+    )
 
     Row(modifier = modifier.fillMaxWidth().padding(vertical = 8.dp)) {
-        vectorImageAssets.forEach {
+        icons.forEach {
             Image(
                 asset = it,
                 modifier = iconSize.weight(1F)
