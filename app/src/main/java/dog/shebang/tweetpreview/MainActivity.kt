@@ -2,12 +2,11 @@ package dog.shebang.tweetpreview
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.compose.foundation.Icon
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.Text
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.Divider
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -35,11 +34,28 @@ class MainActivity : AppCompatActivity() {
 
 @Composable
 fun MyApp() {
+    val icon = vectorResource(id = R.drawable.ic_baseline_arrow_back_24)
+
+    Scaffold(topBar = {
+        TopAppBar(
+            title = { Text(text = "Tweet Preview") },
+            navigationIcon = {
+                IconButton(onClick = {}) {
+                    Icon(asset = icon)
+                }
+            }
+        )
+    }) {
+
+        BodyContents(modifier = Modifier.padding(it))
+    }
+}
+
+@Composable
+fun BodyContents(modifier: Modifier = Modifier) {
     val icon = vectorResource(id = R.drawable.ic_android_black_24dp)
 
-    Column(modifier = Modifier.fillMaxHeight().fillMaxWidth().padding(8.dp)) {
-        TopAppBar()
-
+    Column(modifier = modifier.fillMaxHeight().fillMaxWidth().padding(8.dp)) {
         Profile(vectorIcon = icon, name = "しばDog", id = "ShebangDog")
 
         Content("Multiple Line Content\n End")
@@ -50,11 +66,6 @@ fun MyApp() {
         Divider()
         Action()
     }
-}
-
-@Composable
-fun TopAppBar() {
-
 }
 
 @Composable
