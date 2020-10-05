@@ -24,17 +24,14 @@ class MainActivity : AppCompatActivity() {
 
         setContent {
             TweetPreviewTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(color = MaterialTheme.colors.background) {
-                    MyApp()
-                }
+                TweetPreview()
             }
         }
     }
 }
 
 @Composable
-fun MyApp() {
+fun TweetPreview() {
     Scaffold(topBar = {
         TopAppBar(
             title = { Text(text = "Tweet Preview") },
@@ -140,7 +137,7 @@ fun Action(modifier: Modifier = Modifier) {
 fun DefaultPreview() {
     TweetPreviewTheme {
         Surface(color = MaterialTheme.colors.background) {
-            MyApp()
+            TweetPreview()
         }
     }
 }
