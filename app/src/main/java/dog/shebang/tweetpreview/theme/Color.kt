@@ -1,4 +1,4 @@
-package dog.shebang.tweetpreview.ui
+package dog.shebang.tweetpreview.theme
 
 import androidx.compose.ui.graphics.Color
 

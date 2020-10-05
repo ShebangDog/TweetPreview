@@ -16,7 +16,7 @@ import androidx.compose.ui.graphics.vector.VectorAsset
 import androidx.compose.ui.platform.setContent
 import androidx.compose.ui.unit.dp
 import androidx.ui.tooling.preview.Preview
-import dog.shebang.tweetpreview.ui.TweetPreviewTheme
+import dog.shebang.tweetpreview.theme.TweetPreviewTheme
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
