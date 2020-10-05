@@ -50,4 +50,9 @@ data class Time(val hour: Int, val minute: Int) {
     }
 }
 
-data class ReactionState(val replyList: List<Tweet>, val retweet: Int, val good: Int)
+data class ReactionState(val replyList: List<Tweet>, val retweet: Int, val good: Int) {
+    companion object {
+        const val retweetPostFix = "リツイート"
+        const val goodPostFix = "いいね"
+    }
+}
