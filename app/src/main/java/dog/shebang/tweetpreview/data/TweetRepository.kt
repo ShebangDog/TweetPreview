@@ -8,6 +8,8 @@ import kotlin.random.Random
 
 interface TweetRepository {
     fun fetchTweet(tweetId: String): Flow<Tweet>
+
+    fun fetchTweetList(): Flow<List<Tweet>>
 }
 
 class DefaultTweetRepository : TweetRepository {
@@ -39,6 +41,14 @@ class DefaultTweetRepository : TweetRepository {
             kotlinx.coroutines.delay(1000L)
 
             emit(tweetList.random())
+        }
+    }
+
+    override fun fetchTweetList() = flow {
+        repeat(10) {
+            kotlinx.coroutines.delay(1000L)
+
+            emit(tweetList)
         }
     }
 }

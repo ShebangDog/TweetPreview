@@ -42,7 +42,7 @@ fun DetailContent(viewModel: UserViewModel, innerPadding: PaddingValues) {
 }
 
 @Composable
-fun Tweet(modifier: Modifier = Modifier, tweet: Tweet) {
+fun Tweet(modifier: Modifier = Modifier, tweet: Tweet, showDetail: Boolean = true) {
     val smallPadding = 8.dp
 
     Card(
@@ -56,10 +56,14 @@ fun Tweet(modifier: Modifier = Modifier, tweet: Tweet) {
             Spacer(modifier = Modifier.preferredHeight(smallPadding))
             Content(content = tweet.content)
             Spacer(modifier = Modifier.preferredHeight(smallPadding))
-            AdditionalInfo(tweet.postedTime, tweet.reactionState)
+            PostedTime(postedTime = tweet.postedTime)
+            Spacer(modifier = Modifier.preferredHeight(8.dp))
             Divider()
+            if (showDetail) {
+                Reaction(reactionState = tweet.reactionState)
+                Divider()
+            }
             ReActionBar()
-            Divider()
         }
     }
 }
@@ -96,37 +100,29 @@ fun Content(modifier: Modifier = Modifier, content: String) {
 }
 
 @Composable
-fun AdditionalInfo(postedTime: PostedTime, reactionState: ReactionState) {
-    @Composable
-    fun PostedTime(modifier: Modifier = Modifier, postedTime: PostedTime) {
+fun PostedTime(modifier: Modifier = Modifier, postedTime: PostedTime) {
+    Text(
+        modifier = modifier,
+        text = "${postedTime.formatted()} Twitter for Android",
+        style = TextStyle(color = Color.DarkGray, fontSize = 12.sp)
+    )
+}
+
+@Composable
+fun Reaction(modifier: Modifier = Modifier, reactionState: ReactionState) {
+    val eachModifier = Modifier.padding(start = 4.dp)
+
+    Row(modifier.padding(vertical = 8.dp)) {
         Text(
-            modifier = modifier,
-            text = "${postedTime.formatted()} Twitter for Android",
-            style = TextStyle(color = Color.DarkGray, fontSize = 12.sp)
+            text = "${reactionState.good}${ReactionState.goodPostFix}",
+            modifier = eachModifier
+        )
+
+        Text(
+            text = "${reactionState.retweet}${ReactionState.retweetPostFix}",
+            modifier = eachModifier
         )
     }
-
-    @Composable
-    fun Reaction(modifier: Modifier = Modifier, reactionState: ReactionState) {
-        val eachModifier = Modifier.padding(start = 4.dp)
-
-        Row(modifier.padding(vertical = 8.dp)) {
-            Text(
-                text = "${reactionState.good}${ReactionState.goodPostFix}",
-                modifier = eachModifier
-            )
-
-            Text(
-                text = "${reactionState.retweet}${ReactionState.retweetPostFix}",
-                modifier = eachModifier
-            )
-        }
-    }
-
-    PostedTime(postedTime = postedTime)
-    Spacer(modifier = Modifier.preferredHeight(8.dp))
-    Divider()
-    Reaction(reactionState = reactionState)
 }
 
 @Composable

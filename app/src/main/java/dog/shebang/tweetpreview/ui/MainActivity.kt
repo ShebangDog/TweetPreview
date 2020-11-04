@@ -67,7 +67,7 @@ fun Navigation() {
         }) { innerPadding ->
 
         NavHost(navController = navController, startDestination = Screen.Home.name) {
-            composable(Screen.Home.name) { HomeScreen() }
+            composable(Screen.Home.name) { HomeScreen(innerPadding) }
             composable(Screen.Detail.name) { DetailScreen(innerPadding) }
         }
     }

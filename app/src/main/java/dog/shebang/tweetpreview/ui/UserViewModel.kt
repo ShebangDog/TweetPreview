@@ -7,4 +7,6 @@ import dog.shebang.tweetpreview.data.TweetRepository
 class UserViewModel(private val tweetRepository: TweetRepository) : ViewModel() {
 
     fun tweet(id: String) = tweetRepository.fetchTweet(id).asLiveData()
+
+    val tweetList = tweetRepository.fetchTweetList().asLiveData()
 }
