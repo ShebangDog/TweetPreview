@@ -1,5 +1,10 @@
 package dog.shebang.tweetpreview.data.model
 
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ChatBubbleOutline
+import androidx.compose.material.icons.filled.FavoriteBorder
+import androidx.compose.material.icons.filled.Repeat
+import androidx.compose.material.icons.filled.Share
 import java.util.*
 import kotlin.random.Random
 
@@ -54,5 +59,12 @@ data class ReactionState(val replyList: List<Tweet>, val retweet: Int, val good:
     companion object {
         const val retweetPostFix = "リツイート"
         const val goodPostFix = "いいね"
+
+        val stateIconList = listOf(
+            Icons.Default.ChatBubbleOutline,
+            Icons.Default.Repeat,
+            Icons.Default.FavoriteBorder,
+            Icons.Default.Share
+        )
     }
 }

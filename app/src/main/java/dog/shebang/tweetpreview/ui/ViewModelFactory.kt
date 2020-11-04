@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModelProvider
 import dog.shebang.tweetpreview.data.TweetRepository
 
 @Suppress("UNCHECKED_CAST")
-class ViewModelFactory(
+class UserViewModelFactory(
     private val repository: TweetRepository
 ) : ViewModelProvider.Factory {
 
