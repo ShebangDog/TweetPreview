@@ -29,24 +29,26 @@ fun HomeScreen(navController: NavController) {
         factory = UserViewModelFactory(DefaultTweetRepository())
     )
 
-    Scaffold(topBar = {
-        val title = "Home"
-        TopAppBar(
-            title = { Text(text = title) },
-            elevation = 8.dp,
-            navigationIcon = {
-                IconButton(
-                    onClick = { navController.navigateToProfile() },
-                    icon = { Icon(asset = Icons.Outlined.Person) }
-                )
-            }
-        )
-    },
+    Scaffold(
+        topBar = {
+            val title = "Home"
+            TopAppBar(
+                title = { Text(text = title) },
+                elevation = 8.dp,
+                navigationIcon = {
+                    IconButton(
+                        onClick = { navController.navigateToProfile() },
+                        icon = { Icon(asset = Icons.Outlined.Person) }
+                    )
+                }
+            )
+        },
         floatingActionButton = {
             FloatingActionButton(
                 onClick = { navController.navigateToPost() },
                 icon = { Icon(asset = Icons.Default.Add) })
-        }) {
+        }
+    ) {
 
         HomeContent(navController, userViewModel)
     }

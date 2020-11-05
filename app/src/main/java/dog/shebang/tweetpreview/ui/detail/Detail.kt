@@ -35,18 +35,20 @@ fun DetailScreen(navController: NavController, name: String) {
         factory = UserViewModelFactory(DefaultTweetRepository())
     )
 
-    Scaffold(topBar = {
-        TopAppBar(
-            navigationIcon = {
-                IconButton(
-                    onClick = { navController.popBackStack() },
-                    icon = { Icon(asset = Icons.Outlined.ArrowBack) }
-                )
-            },
-            title = { Text(text = name) },
-            elevation = 8.dp
-        )
-    }) { innerPadding ->
+    Scaffold(
+        topBar = {
+            TopAppBar(
+                navigationIcon = {
+                    IconButton(
+                        onClick = { navController.popBackStack() },
+                        icon = { Icon(asset = Icons.Outlined.ArrowBack) }
+                    )
+                },
+                title = { Text(text = name) },
+                elevation = 8.dp
+            )
+        }
+    ) { innerPadding ->
 
         DetailContent(userViewModel, innerPadding)
     }
