@@ -1,10 +1,13 @@
 package dog.shebang.tweetpreview.ui.detail
 
 import androidx.compose.foundation.Text
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.ArrowBack
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
@@ -16,6 +19,7 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.viewinterop.viewModel
+import androidx.navigation.NavController
 import dev.chrisbanes.accompanist.glide.GlideImage
 import dog.shebang.tweetpreview.data.DefaultTweetRepository
 import dog.shebang.tweetpreview.data.model.PostedTime
@@ -26,12 +30,26 @@ import dog.shebang.tweetpreview.ui.UserViewModel
 import dog.shebang.tweetpreview.ui.UserViewModelFactory
 
 @Composable
-fun DetailScreen(innerPadding: PaddingValues) {
+fun DetailScreen(navController: NavController, name: String) {
     val userViewModel: UserViewModel = viewModel(
         factory = UserViewModelFactory(DefaultTweetRepository())
     )
 
-    DetailContent(userViewModel, innerPadding)
+    Scaffold(topBar = {
+        TopAppBar(
+            navigationIcon = {
+                IconButton(
+                    onClick = { navController.popBackStack() },
+                    icon = { Icon(asset = Icons.Outlined.ArrowBack) }
+                )
+            },
+            title = { Text(text = name) },
+            elevation = 8.dp
+        )
+    }) { innerPadding ->
+
+        DetailContent(userViewModel, innerPadding)
+    }
 }
 
 @Composable
@@ -42,12 +60,19 @@ fun DetailContent(viewModel: UserViewModel, innerPadding: PaddingValues) {
 }
 
 @Composable
-fun Tweet(modifier: Modifier = Modifier, tweet: Tweet, showDetail: Boolean = true) {
+fun Tweet(
+    modifier: Modifier = Modifier,
+    tweet: Tweet,
+    showDetail: Boolean = true,
+    onClick: (() -> Unit)? = null
+) {
     val smallPadding = 8.dp
 
     Card(
         elevation = 2.dp,
-        modifier = modifier.clip(RoundedCornerShape(16.dp)),
+        modifier = modifier
+            .clip(RoundedCornerShape(16.dp))
+            .clickable(enabled = onClick != null, onClick = { onClick?.invoke() }),
         backgroundColor = Color.Gray
     ) {
 
