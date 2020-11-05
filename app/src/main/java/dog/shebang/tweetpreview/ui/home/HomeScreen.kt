@@ -2,7 +2,7 @@ package dog.shebang.tweetpreview.ui.home
 
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.LazyColumnFor
+import androidx.compose.foundation.lazy.LazyColumnForIndexed
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
@@ -33,10 +33,16 @@ fun HomeContent(innerPadding: PaddingValues, userViewModel: UserViewModel) {
 
 @Composable
 fun TweetList(modifier: Modifier = Modifier, tweetList: List<Tweet>) {
-    LazyColumnFor(
+    LazyColumnForIndexed(
         items = tweetList,
-        modifier = modifier.padding(top = 8.dp, start = 8.dp, end = 8.dp),
-        itemContent = { item ->
-            Tweet(tweet = item, modifier = Modifier.padding(bottom = 8.dp), showDetail = false)
+        modifier = modifier.padding(horizontal = 8.dp),
+        itemContent = { index, item ->
+            val topPadding = (if (index == 0) 8 else 0).dp
+
+            Tweet(
+                tweet = item,
+                modifier = Modifier.padding(top = topPadding, bottom = 8.dp),
+                showDetail = false
+            )
         })
 }
