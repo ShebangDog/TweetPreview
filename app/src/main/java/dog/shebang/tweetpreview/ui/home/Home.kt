@@ -3,11 +3,9 @@ package dog.shebang.tweetpreview.ui.home
 import androidx.compose.foundation.Text
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumnForIndexed
-import androidx.compose.material.Icon
-import androidx.compose.material.IconButton
-import androidx.compose.material.Scaffold
-import androidx.compose.material.TopAppBar
+import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.outlined.Person
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -22,6 +20,7 @@ import dog.shebang.tweetpreview.ui.UserViewModel
 import dog.shebang.tweetpreview.ui.UserViewModelFactory
 import dog.shebang.tweetpreview.ui.detail.Tweet
 import dog.shebang.tweetpreview.ui.navigation.navigateToDetail
+import dog.shebang.tweetpreview.ui.navigation.navigateToPost
 import dog.shebang.tweetpreview.ui.navigation.navigateToProfile
 
 @Composable
@@ -42,7 +41,12 @@ fun HomeScreen(navController: NavController) {
                 )
             }
         )
-    }) {
+    },
+        floatingActionButton = {
+            FloatingActionButton(
+                onClick = { navController.navigateToPost() },
+                icon = { Icon(asset = Icons.Default.Add) })
+        }) {
 
         HomeContent(navController, userViewModel)
     }

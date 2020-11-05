@@ -11,6 +11,7 @@ import dog.shebang.tweetpreview.theme.TweetPreviewTheme
 import dog.shebang.tweetpreview.ui.detail.DetailScreen
 import dog.shebang.tweetpreview.ui.home.HomeScreen
 import dog.shebang.tweetpreview.ui.navigation.Screen
+import dog.shebang.tweetpreview.ui.post.PostScreen
 import dog.shebang.tweetpreview.ui.profile.ProfileScreen
 
 class MainActivity : AppCompatActivity() {
@@ -37,6 +38,7 @@ fun AppContent() {
     NavHost(navController = navController, startDestination = Screen.Home.name) {
         composable(Screen.Home.name) { HomeScreen(navController) }
         composable(Screen.Detail.name) { DetailScreen(navController, name = "") }
+        composable(Screen.Post.name) { PostScreen(navController) }
         composable(Screen.Profile.name) { ProfileScreen() }
     }
 }
