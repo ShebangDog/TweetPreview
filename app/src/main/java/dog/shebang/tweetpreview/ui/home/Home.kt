@@ -7,6 +7,7 @@ import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.outlined.Person
+import androidx.compose.material.icons.outlined.Settings
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
@@ -22,6 +23,7 @@ import dog.shebang.tweetpreview.ui.detail.Tweet
 import dog.shebang.tweetpreview.ui.navigation.navigateToDetail
 import dog.shebang.tweetpreview.ui.navigation.navigateToPost
 import dog.shebang.tweetpreview.ui.navigation.navigateToProfile
+import dog.shebang.tweetpreview.ui.navigation.navigateToSetting
 
 @Composable
 fun HomeScreen(navController: NavController) {
@@ -40,6 +42,11 @@ fun HomeScreen(navController: NavController) {
                         onClick = { navController.navigateToProfile() },
                         icon = { Icon(asset = Icons.Outlined.Person) }
                     )
+                },
+                actions = {
+                    IconButton(onClick = { navController.navigateToSetting() }) {
+                        Icon(asset = Icons.Outlined.Settings)
+                    }
                 }
             )
         },
